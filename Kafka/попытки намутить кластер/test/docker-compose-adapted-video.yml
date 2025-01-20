@@ -54,5 +54,16 @@ services:
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
   #    volumes:
   #      - e:/kafka/temp/docker-compose/volumes/server-3/:/bitnami/kafka
-
+  kafka-ui:
+    image: ghcr.io/kafbat/kafka-ui:latest
+    ports:
+      - 8070:8080
+    environment:
+      DYNAMIC_CONFIG_ENABLED: "true"
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka-1:9090,kafka-2:9090,kafka-3:9090
+    depends_on:
+      - kafka-1
+      - kafka-2
+      - kafka-3
   
