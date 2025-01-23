@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.6'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+//apply plugin: 'io.spring.dependency-management'
+//apply plugin: 'io.spring.dependency-management'
+
+//group = 'org.example'
+//version = '1.0'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+bootJar {
+    enabled = false
+}
+
+dependencies {
+    testImplementation libs.junit
+
+    implementation libs.guava
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.kafka:spring-kafka'
+    implementation 'ru.kamatech.unigate:unigate-common:1.28-SNAPSHOT'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+task Blabla {
+    doLast {
+        println System.getenv('PATH')
+    }
+}
+
+
+
+

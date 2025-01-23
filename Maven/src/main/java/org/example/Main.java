@@ -9,6 +9,7 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.TopicPartition;
+import org.apache.kafka.common.protocol.types.Field;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 
@@ -28,10 +29,12 @@ public class Main {
         StringSerializer stringSerializer = new StringSerializer();
         StringDeserializer stringDeserializer = new StringDeserializer();
 
+        String bootstrapServersConfig = ":9092,:9093,:9094";
+
         Properties producesProperties = new Properties();
 //        producesProperties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092,localhost:9094,localhost:9096");
 //        producesProperties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092,localhost:9093,localhost:9094");
-        producesProperties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, ":9092,:9093,:9094");
+        producesProperties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServersConfig);
 //        producesProperties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         producesProperties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, stringSerializer.getClass());
         producesProperties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, stringSerializer.getClass());
@@ -39,7 +42,7 @@ public class Main {
         Properties consumerProperties = new Properties();
 //        consumerProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092,localhost:9094,localhost:9096");
 //        consumerProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092,localhost:9093,localhost:9094");
-        consumerProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, ":9092,:9093,:9094");
+        consumerProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServersConfig);
 //        consumerProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, stringDeserializer.getClass());
         consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, stringDeserializer.getClass());
